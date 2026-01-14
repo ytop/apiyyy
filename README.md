@@ -34,3 +34,23 @@ ta.save("test-2.wav", wav, model.sr)
 
 # technical stack
 fastapi, installed already
+
+# init from main
+> Created main.py with a /tts endpoint that:
+
+- Accepts text (required) and language_id (default: "en") as form fields
+- Accepts optional audio_prompt wav file for voice cloning
+- Returns the generated wav file
+
+Run the server with:
+bash
+uvicorn main:app --reload
+
+
+Example usage:
+bash
+# Basic TTS
+curl -X POST "http://localhost:8000/tts" -F "text=Hello world" -o output.wav
+
+# With custom voice
+curl -X POST "http://localhost:8000/tts" -F "text=Hello world" -F "audio_prompt=@sample.wav" -o output.wav
